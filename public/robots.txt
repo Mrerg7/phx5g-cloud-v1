@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://phx5g.cloud/sitemap-index.xml

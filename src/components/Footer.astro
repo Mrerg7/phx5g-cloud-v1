@@ -1,0 +1,82 @@
+---
+import { ACQUISITION_MAILTO, SITE, DISCLAIMER_DATE } from '../config/site';
+---
+
+<footer class="relative z-10 border-t border-white/10 bg-phx-bg">
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    <!-- Sophisticated Domain Acquisition CTA -->
+    <div
+      class="relative overflow-hidden rounded-3xl border border-phx-cyan/25 bg-gradient-to-br from-zinc-900 via-phx-bg to-phx-purple/10 p-8 sm:p-12 mb-12"
+    >
+      <div
+        class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-phx-cyan/10 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-phx-purple/10 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
+        <div>
+          <p class="text-xs uppercase tracking-[3px] text-phx-cyan font-extrabold mb-4">
+            Domain Available for Acquisition
+          </p>
+          <h2 class="font-display text-3xl sm:text-4xl tracking-tight mb-4">
+            phx5g.cloud — A Strategic Phoenix 5G Digital Asset
+          </h2>
+          <p class="text-white/60 max-w-xl leading-relaxed">
+            Positioned at the intersection of Phoenix metro growth, 5G edge infrastructure, and cloud-native
+            connectivity, this domain is a rare strategic asset. Serious buyers may inquire for pricing, transfer
+            logistics, and escrow options.
+          </p>
+        </div>
+
+        <div
+          class="rounded-2xl p-6 sm:p-8 border border-white/10"
+          style="background: rgba(10, 10, 15, 0.88); backdrop-filter: blur(22px);"
+        >
+          <p class="text-xs uppercase tracking-[2px] text-white/50 font-semibold mb-2">Acquisition Contact</p>
+          <a
+            href={`mailto:${SITE.email}`}
+            class="block text-2xl sm:text-3xl font-display text-white hover:text-phx-cyan transition-colors break-all"
+          >
+            {SITE.email}
+          </a>
+          <a
+            href={ACQUISITION_MAILTO}
+            class="mt-6 inline-flex w-full items-center justify-center gap-x-3 px-6 py-4 bg-gradient-to-r from-phx-cyan to-phx-purple text-phx-bg font-extrabold rounded-2xl hover:brightness-110 transition-all"
+          >
+            <span>Inquire About Acquisition</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M14 5l7 7-7 7m-4-7h11" />
+            </svg>
+          </a>
+          <p class="mt-4 text-[11px] text-white/50 text-center tracking-wide">
+            Confidential inquiries &bull; Response within 24 hours
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <p class="text-xs text-white/50 leading-relaxed max-w-4xl mb-10">
+      This website is for demonstration and informational purposes only. It does not constitute an offer of services, a
+      commitment to deploy, or a guarantee of outcomes. All statistics, projections, and references to specific
+      technologies are based on publicly available information as of {DISCLAIMER_DATE} and are subject to change.
+    </p>
+
+    <!-- Bottom bar -->
+    <div
+      class="pt-8 border-t border-white/10 text-xs text-white/50 flex flex-col md:flex-row gap-y-4 items-center justify-between"
+    >
+      <div>
+        Transactions secured via <span class="font-medium text-white/70">Escrow.com</span> &bull; Premium domain
+        brokerage
+      </div>
+      <div>&copy; 2026 phx5g.cloud &bull; All rights reserved</div>
+    </div>
+  </div>
+</footer>

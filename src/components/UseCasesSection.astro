@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+
+const useCases = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="uses" class="max-w-6xl mx-auto px-6 py-20">
+  <div class="max-w-2xl mb-12">
+    <div class="inline-block px-3.5 py-1 rounded-full bg-white/5 text-xs tracking-[1.5px] font-medium text-white/60 mb-4">
+      IDEAL FOR
+    </div>
+    <h2 class="section-header tracking-[-0.035em] leading-none">
+      The natural home for Phoenix 5G infrastructure.
+    </h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {
+      useCases.map(({ data }) => (
+        <div class="group p-7 rounded-3xl border border-white/10 hover:border-white/20 transition-colors bg-white/[0.015]">
+          <div class="font-mono text-xs tracking-widest text-phx-cyan mb-2">{data.number}</div>
+          <div class="font-semibold text-lg mb-2 group-hover:text-phx-cyan transition-colors">{data.title}</div>
+          <p class="text-sm text-white/60">{data.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<div class="max-w-3xl mx-auto px-6 text-center py-8 border-y border-white/10">
+  <p class="text-2xl md:text-3xl font-light tracking-tight text-white/90">
+    Phoenix is growing fast.<br />
+    Its infrastructure should too.
+  </p>
+</div>
