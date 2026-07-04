@@ -1,6 +1,11 @@
 ---
 import '../styles/global.css';
 import { SITE, OG_IMAGE, ACQUISITION_MAILTO } from '../config/site';
+import {
+  PRODUCT_AGGREGATE_RATING,
+  PRODUCT_REVIEW,
+  buildProductOffer,
+} from '../config/structured-data';
 
 interface Props {
   title?: string;
@@ -54,18 +59,9 @@ const structuredData = {
         '@type': 'Brand',
         name: SITE.name,
       },
-      offers: {
-        '@type': 'Offer',
-        url: ACQUISITION_MAILTO,
-        price: SITE.price,
-        priceCurrency: 'USD',
-        availability: 'https://schema.org/InStock',
-        seller: {
-          '@type': 'Organization',
-          name: SITE.name,
-          email: SITE.email,
-        },
-      },
+      review: PRODUCT_REVIEW,
+      aggregateRating: PRODUCT_AGGREGATE_RATING,
+      offers: buildProductOffer(ACQUISITION_MAILTO),
     },
     {
       '@type': 'Organization',
@@ -125,6 +121,9 @@ const structuredData = {
     />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {SITE.googleSiteVerification && (
+      <meta name="google-site-verification" content={SITE.googleSiteVerification} />
+    )}
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>

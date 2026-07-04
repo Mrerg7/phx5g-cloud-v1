@@ -9,6 +9,7 @@ export const SITE = {
   location: 'Phoenix, Arizona',
   price: '8997',
   priceDisplay: '$8,997',
+  googleSiteVerification: 'JvPrE8PouQodW9Jt47GaauobNhdKixuJS5BPB4Ok2Ag',
 } as const;
 
 export const CF_IMAGES = {
