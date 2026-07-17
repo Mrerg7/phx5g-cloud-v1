@@ -8,7 +8,7 @@ export const PRODUCT_REVIEW = {
     bestRating: 5,
   },
   author: {
-    '@type': 'Team',
+    '@type': 'Organization',
     name: 'Domain Acquisition Specialists',
   },
   reviewBody:
@@ -62,6 +62,7 @@ export function buildProductOffer(acquisitionUrl: string) {
     url: acquisitionUrl,
     price: SITE.price,
     priceCurrency: 'USD',
+    validFrom: '2025-01-01',
     priceValidUntil: '2026-12-31',
     itemCondition: 'https://schema.org/NewCondition',
     availability: 'https://schema.org/InStock',
