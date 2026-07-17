@@ -8,7 +8,7 @@ export const PRODUCT_REVIEW = {
     bestRating: 5,
   },
   author: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: 'Domain Acquisition Specialists',
   },
   reviewBody:

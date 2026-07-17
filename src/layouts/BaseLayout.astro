@@ -59,7 +59,10 @@ const structuredData = {
         '@type': 'Brand',
         name: SITE.name,
       },
-      review: PRODUCT_REVIEW,
+      review: {
+        ...PRODUCT_REVIEW,
+        itemReviewed: { '@id': `${SITE.url}/#product` },
+      },
       aggregateRating: PRODUCT_AGGREGATE_RATING,
       offers: buildProductOffer(ACQUISITION_MAILTO),
     },

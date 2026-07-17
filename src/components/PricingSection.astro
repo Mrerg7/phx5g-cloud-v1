@@ -60,6 +60,7 @@ import { PRODUCT_REVIEW } from '../config/structured-data';
 
     <div class="glass rounded-2xl p-6 border border-white/10" itemscope itemtype="https://schema.org/Review">
       <h3 class="text-sm font-semibold tracking-wide text-white/80 mb-3">Domain assessment</h3>
+      <meta itemprop="itemReviewed" itemscope itemtype="https://schema.org/Product" />
       <meta itemprop="author" content={PRODUCT_REVIEW.author.name} />
       <p class="text-sm text-white/60" itemprop="reviewBody">{PRODUCT_REVIEW.reviewBody}</p>
       <div
