@@ -2,8 +2,11 @@ name = "phx5g-cloud-v1"
 compatibility_date = "2026-07-02"
 workers_dev = false
 preview_urls = false
+main = "./src/worker.ts"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 html_handling = "force-trailing-slash"
 not_found_handling = "404-page"
+run_worker_first = true
