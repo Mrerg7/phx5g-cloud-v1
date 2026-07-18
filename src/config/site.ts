@@ -3,7 +3,7 @@ export const SITE = {
   title: 'phx5g.cloud | Phoenix 5G Cloud — Premium Domain',
   description:
     'phx5g.cloud — Phoenix 5G Cloud Infrastructure. A clean, modern landing page for 5G edge computing, private 5G networks, and cloud-native infrastructure serving the Phoenix metro area.',
-  url: 'https://phx5g.cloud',
+  url: 'https://phx5g.cloud/',
   email: 'sales@desertrich.com',
   locale: 'en_US',
   location: 'Phoenix, Arizona',

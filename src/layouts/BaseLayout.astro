@@ -29,7 +29,7 @@ const structuredData = {
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': `${SITE.url}/#website`,
+      '@id': `${SITE.url}#website`,
       url: SITE.url,
       name: SITE.name,
       description,
@@ -37,18 +37,18 @@ const structuredData = {
     },
     {
       '@type': 'WebPage',
-      '@id': `${SITE.url}/#webpage`,
+      '@id': `${SITE.url}#webpage`,
       url: SITE.url,
       name: title,
       description,
-      isPartOf: { '@id': `${SITE.url}/#website` },
+      isPartOf: { '@id': `${SITE.url}#website` },
       datePublished: publishedDate,
       dateModified: publishedDate,
       inLanguage: 'en-US',
     },
     {
       '@type': 'Product',
-      '@id': `${SITE.url}/#product`,
+      '@id': `${SITE.url}#product`,
       name: 'phx5g.cloud Premium Domain Name',
       description:
         'The premier domain for 5G edge computing, private 5G networks, and cloud-native infrastructure in the Phoenix metro area. Available for acquisition.',
@@ -61,14 +61,14 @@ const structuredData = {
       },
       review: {
         ...PRODUCT_REVIEW,
-        itemReviewed: { '@id': `${SITE.url}/#product` },
+        itemReviewed: { '@id': `${SITE.url}#product` },
       },
       aggregateRating: PRODUCT_AGGREGATE_RATING,
       offers: buildProductOffer(ACQUISITION_MAILTO),
     },
     {
       '@type': 'Organization',
-      '@id': `${SITE.url}/#organization`,
+      '@id': `${SITE.url}#organization`,
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
