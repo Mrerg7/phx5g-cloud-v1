@@ -61,7 +61,7 @@ const structuredData = {
       },
       review: {
         ...PRODUCT_REVIEW,
-        itemReviewed: { '@id': `${SITE.url}#product` },
+        itemReviewed: { '@id': `${SITE.url}#product`, name: `${SITE.name} Premium Domain Name` },
       },
       aggregateRating: PRODUCT_AGGREGATE_RATING,
       offers: buildProductOffer(ACQUISITION_MAILTO),
