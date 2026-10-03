@@ -5,18 +5,28 @@ import Hero from '../components/Hero.astro';
 import PositioningSection from '../components/PositioningSection.astro';
 import WhySection from '../components/WhySection.astro';
 import UseCasesSection from '../components/UseCasesSection.astro';
+import ProofSection from '../components/ProofSection.astro';
 import PricingSection from '../components/PricingSection.astro';
+import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
+import StickyBuyBar from '../components/StickyBuyBar.astro';
+import ExitIntent from '../components/ExitIntent.astro';
+import Enhancements from '../components/Enhancements.astro';
 ---
 
 <BaseLayout>
   <Nav />
-  <main>
+  <main id="main">
     <Hero />
     <PositioningSection />
     <WhySection />
     <UseCasesSection />
+    <ProofSection />
     <PricingSection />
+    <FaqSection />
     <Footer />
   </main>
+  <StickyBuyBar />
+  <ExitIntent />
+  <Enhancements />
 </BaseLayout>

@@ -14,10 +14,20 @@ const useCases = (await getCollection('useCases')).sort((a, b) => a.data.order -
     </h2>
   </div>
 
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter use cases">
+    <button data-filter="all" class="filter-chip px-5 py-2.5 min-h-[48px] rounded-full text-sm font-medium border border-phx-cyan/40 bg-phx-cyan/10 text-white">All</button>
+    <button data-filter="network" class="filter-chip px-5 py-2.5 min-h-[48px] rounded-full text-sm font-medium border border-white/10 bg-white/5 text-white/70 hover:text-white">Networks</button>
+    <button data-filter="city" class="filter-chip px-5 py-2.5 min-h-[48px] rounded-full text-sm font-medium border border-white/10 bg-white/5 text-white/70 hover:text-white">Smart City &amp; Edge</button>
+    <button data-filter="business" class="filter-chip px-5 py-2.5 min-h-[48px] rounded-full text-sm font-medium border border-white/10 bg-white/5 text-white/70 hover:text-white">Business</button>
+  </div>
+
+  <div id="usecase-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
     {
       useCases.map(({ data }) => (
-        <div class="group p-7 rounded-3xl border border-white/10 hover:border-white/20 transition-colors bg-white/[0.015]">
+        <div
+          class="usecase-card group p-7 rounded-3xl border border-white/10 hover:border-white/20 transition-colors bg-white/[0.015]"
+          data-title={`${data.title} ${data.description}`.toLowerCase()}
+        >
           <div class="font-mono text-xs tracking-widest text-phx-cyan mb-2">{data.number}</div>
           <div class="font-semibold text-lg mb-2 group-hover:text-phx-cyan transition-colors">{data.title}</div>
           <p class="text-sm text-white/60">{data.description}</p>
@@ -26,6 +36,34 @@ const useCases = (await getCollection('useCases')).sort((a, b) => a.data.order -
     }
   </div>
 </section>
+
+<script>
+  const chips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('.usecase-card');
+  const match = (text, f) => {
+    if (f === 'all') return true;
+    if (f === 'network') return /5g|network|provider|private/i.test(text);
+    if (f === 'city') return /city|edge|iot|smart/i.test(text);
+    if (f === 'business') return /enterprise|consult|business/i.test(text);
+    return true;
+  };
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const f = chip.getAttribute('data-filter') ?? 'all';
+      chips.forEach((c) => {
+        const active = c === chip;
+        c.classList.toggle('border-phx-cyan/40', active);
+        c.classList.toggle('bg-phx-cyan/10', active);
+        c.classList.toggle('text-white', active);
+        c.classList.toggle('text-white/70', !active);
+      });
+      cards.forEach((card) => {
+        const t = card.getAttribute('data-title') ?? '';
+        card.classList.toggle('hidden', !match(t, f));
+      });
+    });
+  });
+</script>
 
 <div class="max-w-3xl mx-auto px-6 text-center py-8 border-y border-white/10">
   <p class="text-2xl md:text-3xl font-light tracking-tight text-white/90">

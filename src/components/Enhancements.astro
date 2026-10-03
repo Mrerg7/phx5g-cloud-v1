@@ -1,0 +1,35 @@
+---
+// Global progressive enhancements: scroll reveals + CTA click tracking (no backend, free-plan safe).
+// Emits `phx5g:cta` CustomEvent + console.info so any analytics snippet can hook in.
+---
+
+<script>
+  // Reveal-on-scroll
+  const els = document.querySelectorAll('main section, footer');
+  els.forEach((el) => el.classList.add('reveal'));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add('is-visible');
+            io.unobserve(en.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+    );
+    els.forEach((el) => io.observe(el));
+  } else {
+    els.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // CTA tracking hook
+  document.querySelectorAll('[data-cta]').forEach((cta) => {
+    cta.addEventListener('click', () => {
+      const name = cta.getAttribute('data-cta');
+      document.dispatchEvent(new CustomEvent('phx5g:cta', { detail: { name } }));
+      console.info('[cta]', name);
+    });
+  });
+</script>

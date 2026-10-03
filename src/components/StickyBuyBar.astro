@@ -1,0 +1,36 @@
+---
+import { ACQUISITION_MAILTO, SITE } from '../config/site';
+---
+
+<!-- Sticky mobile buy bar (appears after scrolling past hero) -->
+<div
+  id="sticky-buy"
+  class="fixed bottom-0 left-0 right-0 z-40 translate-y-full transition-transform duration-300 md:hidden"
+  style="padding-bottom: env(safe-area-inset-bottom);"
+>
+  <div class="border-t border-white/10 bg-[#0a0a0f]/95 backdrop-blur-xl px-4 py-3 flex items-center gap-3">
+    <div class="min-w-0 flex-1">
+      <div class="truncate text-sm font-semibold">phx5g.cloud</div>
+      <div class="text-xs text-phx-cyan font-semibold">{SITE.priceDisplay} · Buy Now</div>
+    </div>
+    <a
+      href={ACQUISITION_MAILTO}
+      data-cta="buy-now-sticky"
+      class="inline-flex items-center justify-center px-6 min-h-[48px] rounded-xl bg-white text-phx-bg text-sm font-bold shrink-0"
+    >
+      Secure Now
+    </a>
+  </div>
+</div>
+
+<script>
+  const bar = document.getElementById('sticky-buy');
+  const onScroll = () => {
+    if (!bar) return;
+    const past = window.scrollY > window.innerHeight * 0.7;
+    const nearBottom = window.innerHeight + window.scrollY > document.body.scrollHeight - 500;
+    bar.classList.toggle('translate-y-full', !past || nearBottom);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

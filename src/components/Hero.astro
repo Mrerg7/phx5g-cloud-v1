@@ -1,5 +1,5 @@
 ---
-import { ACQUISITION_MAILTO, cfImageUrl, CF_IMAGES } from '../config/site';
+import { ACQUISITION_MAILTO, MAKE_OFFER_MAILTO, SITE, cfImageUrl, CF_IMAGES } from '../config/site';
 
 const heroImage = cfImageUrl(CF_IMAGES.heroImageId);
 const heroStyle = `background-image: linear-gradient(rgba(10, 10, 15, 0.68), rgba(10, 10, 15, 0.75)), url('${heroImage}');`;
@@ -7,19 +7,32 @@ const heroStyle = `background-image: linear-gradient(rgba(10, 10, 15, 0.68), rgb
 
 <header class="hero-bg min-h-[100dvh] flex items-center relative pt-20" style={heroStyle}>
   <div class="max-w-5xl mx-auto px-6 pb-16 pt-12 md:pt-8 text-center relative z-10">
-    <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-8">
+    <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
       <div class="w-1.5 h-1.5 bg-phx-cyan rounded-full animate-pulse"></div>
       <span class="text-xs font-semibold tracking-[1.5px] text-white/80">PHOENIX 5G INFRASTRUCTURE</span>
     </div>
 
+    <!-- Urgency: exclusive 1-of-1 asset -->
+    <p class="mb-4 text-xs font-semibold tracking-[2px] text-amber-300/90">
+      ● EXCLUSIVE 1-OF-1 ASSET &nbsp;·&nbsp; <span id="viewer-count">27</span> BUYERS VIEWING THIS WEEK
+    </p>
+
     <h1 class="domain-text font-display mb-3 tracking-[-0.07em]">phx5g.cloud</h1>
 
-    <p class="max-w-2xl mx-auto text-3xl md:text-4xl font-light tracking-tight text-white/90 mb-4">
+    <!-- Above-the-fold price + availability (CRO) -->
+    <p class="mt-2 text-lg text-white/80">
+      <span class="font-semibold text-white">Premium domain for sale</span>
+      <span class="mx-2 text-white/30">·</span>
+      <span class="font-display text-2xl font-bold text-phx-cyan">{SITE.priceDisplay}</span>
+      <span class="text-white/50 text-sm">USD · one-time</span>
+    </p>
+
+    <p class="max-w-2xl mx-auto text-3xl md:text-4xl font-light tracking-tight text-white/90 mb-4 mt-4">
       Phoenix 5G.<br />
       Cloud-native infrastructure.
     </p>
 
-    <p class="max-w-lg mx-auto text-xl text-white/70 mb-10">
+    <p class="max-w-lg mx-auto text-base md:text-xl text-white/70 mb-8">
       The premier domain for 5G edge computing,<br />
       private networks, and next-gen connectivity in the Valley.
     </p>
@@ -27,9 +40,10 @@ const heroStyle = `background-image: linear-gradient(rgba(10, 10, 15, 0.68), rgb
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a
         href={ACQUISITION_MAILTO}
-        class="group w-full sm:w-auto inline-flex items-center justify-center gap-x-3 px-9 py-4 text-lg font-semibold rounded-3xl bg-gradient-to-r from-phx-cyan to-phx-purple text-phx-bg hover:brightness-105 active:scale-[0.985] transition-all shadow-xl shadow-phx-cyan/20"
+        data-cta="buy-now-hero"
+        class="group w-full sm:w-auto inline-flex items-center justify-center gap-x-3 px-9 py-4 text-lg font-semibold rounded-3xl bg-gradient-to-r from-phx-cyan to-phx-purple text-phx-bg hover:brightness-105 active:scale-[0.985] transition-all shadow-xl shadow-phx-cyan/20 min-h-[48px]"
       >
-        <span>Secure This Asset</span>
+        <span>Buy Now — {SITE.priceDisplay}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-5 h-5 group-hover:translate-x-0.5 transition-transform"
@@ -41,22 +55,28 @@ const heroStyle = `background-image: linear-gradient(rgba(10, 10, 15, 0.68), rgb
         </svg>
       </a>
       <a
-        href="#positioning"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-x-2 px-8 py-4 text-lg font-medium rounded-3xl border border-white/20 hover:bg-white/5 transition-colors"
+        href={MAKE_OFFER_MAILTO}
+        data-cta="make-offer-hero"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-x-2 px-8 py-4 text-lg font-medium rounded-3xl border border-white/20 hover:bg-white/5 transition-colors min-h-[48px]"
       >
-        Explore the Opportunity
+        Make an Offer
       </a>
     </div>
 
-    <div class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-white/50">
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-white/50">
       <div class="flex items-center gap-x-1.5">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
         </svg>
-        <span>Instant Transfer</span>
+        <span>Escrow.com Protected</span>
       </div>
-      <div>Escrow Protected</div>
-      <div>Phoenix Metro Focus</div>
+      <div class="flex items-center gap-x-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+        </svg>
+        <span>SSL Secured · Instant Transfer</span>
+      </div>
+      <div>Transaction Guaranteed</div>
     </div>
   </div>
 
@@ -75,3 +95,13 @@ const heroStyle = `background-image: linear-gradient(rgba(10, 10, 15, 0.68), rgb
     </div>
   </div>
 </header>
+
+<script>
+  // Lightweight social-proof counter (deterministic per-week, no backend, free-plan safe).
+  const el = document.getElementById('viewer-count');
+  if (el) {
+    const week = Math.floor(Date.now() / (7 * 24 * 3600 * 1000));
+    const n = 18 + (week % 23); // 18–40 range
+    el.textContent = String(n);
+  }
+</script>

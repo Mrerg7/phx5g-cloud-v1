@@ -1,0 +1,67 @@
+---
+import { ACQUISITION_MAILTO, SITE } from '../config/site';
+---
+
+<!-- Exit-intent: email capture / discount nudge. Free-plan safe: mailto + localStorage, no backend. -->
+<div id="exit-modal" class="hidden fixed inset-0 z-[90] items-center justify-center p-6" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+  <div id="exit-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+  <div class="relative glass rounded-3xl border border-white/10 max-w-md w-full p-8 text-center bg-[#0d0d14]">
+    <button id="exit-close" aria-label="Close offer" class="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-white/50 hover:text-white text-xl">
+      ×
+    </button>
+    <p class="text-xs font-bold tracking-[2px] text-phx-cyan mb-3">BEFORE YOU GO</p>
+    <h2 id="exit-title" class="font-display text-2xl mb-3">Still considering phx5g.cloud?</h2>
+    <p class="text-sm text-white/60 mb-6">
+      This is a 1-of-1 asset at <span class="text-white font-semibold">{SITE.priceDisplay}</span>. Send one email
+      now and get a response within 24 hours — flexible terms for serious buyers.
+    </p>
+    <a
+      href={ACQUISITION_MAILTO}
+      data-cta="buy-now-exit"
+      class="flex w-full items-center justify-center px-6 py-4 min-h-[48px] rounded-2xl bg-gradient-to-r from-phx-cyan to-phx-purple text-phx-bg font-bold hover:brightness-110 transition-all"
+    >
+      Inquire Now
+    </a>
+    <button id="exit-dismiss" class="mt-3 text-xs text-white/40 hover:text-white/70 underline underline-offset-4 min-h-[48px] px-4">
+      No thanks, I’ll keep browsing
+    </button>
+  </div>
+</div>
+
+<script>
+  const KEY = 'phx5g-exit-shown';
+  const modal = document.getElementById('exit-modal');
+  const close = () => {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+    try { sessionStorage.setItem(KEY, '1'); } catch {}
+  };
+  const open = () => {
+    try { if (sessionStorage.getItem(KEY)) return; } catch {}
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  };
+  document.getElementById('exit-close')?.addEventListener('click', close);
+  document.getElementById('exit-dismiss')?.addEventListener('click', close);
+  document.getElementById('exit-backdrop')?.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  // Desktop exit-intent (mouse leaves viewport top). Once per session.
+  document.addEventListener('mouseout', (e) => {
+    if (!e.relatedTarget && e.clientY <= 0) open();
+  });
+  // Mobile fallback: show once after 75s of engagement, only if pricing never reached.
+  setTimeout(() => {
+    let pricingSeen = false;
+    try { pricingSeen = sessionStorage.getItem('phx5g-pricing-seen') === '1'; } catch {}
+    if (!pricingSeen) open();
+  }, 75000);
+  // Mark pricing seen for the fallback above.
+  const pricing = document.getElementById('pricing');
+  if (pricing && 'IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      if (entries.some((en) => en.isIntersecting)) {
+        try { sessionStorage.setItem('phx5g-pricing-seen', '1'); } catch {}
+      }
+    }).observe(pricing);
+  }
+</script>

@@ -56,10 +56,10 @@ export const SHIPPING_DETAILS = {
   },
 } as const;
 
-export function buildProductOffer(acquisitionUrl: string) {
+export function buildProductOffer(pageUrl: string) {
   return {
     '@type': 'Offer',
-    url: acquisitionUrl,
+    url: pageUrl,
     price: SITE.price,
     priceCurrency: 'USD',
     validFrom: '2025-01-01',

@@ -1,0 +1,64 @@
+---
+import { ACQUISITION_MAILTO, MAKE_OFFER_MAILTO, SITE } from '../config/site';
+
+const faqs = [
+  {
+    q: 'How much is phx5g.cloud and how do I buy it?',
+    a: `phx5g.cloud is listed at ${SITE.priceDisplay} USD for a one-time acquisition with full ownership. Click “Buy Now” to start an escrow-protected transfer, or use “Make an Offer” to propose terms.`,
+  },
+  {
+    q: 'Is the transfer secure?',
+    a: 'Yes. Transfers are completed via Escrow.com with a clean title and typically finalize within 3–10 business days. Funds are only released when the domain is in your registrar account.',
+  },
+  {
+    q: 'What is phx5g.cloud best used for?',
+    a: 'Private 5G networks, edge computing, smart-city infrastructure, regional ISPs, enterprise connectivity, and 5G consulting in the Phoenix metro area.',
+  },
+  {
+    q: 'Can I make an offer below the list price?',
+    a: 'Yes — serious buyers can submit an offer with intended use and timeline. Inquiries are answered within 24 hours.',
+  },
+  {
+    q: 'Why a .cloud domain for 5G?',
+    a: '5G infrastructure is cloud-native: edge compute, network slicing, and private networks all run on cloud architecture. A .cloud TLD signals technical credibility better than a generic .com for this niche.',
+  },
+];
+---
+
+<section id="faq" class="max-w-3xl mx-auto px-6 py-20">
+  <div class="text-center mb-10">
+    <div class="inline-block px-3.5 py-1 rounded-full bg-white/5 text-xs tracking-[1.5px] font-medium text-white/60 mb-4">
+      FAQ
+    </div>
+    <h2 class="section-header tracking-[-0.03em]">Questions, answered.</h2>
+  </div>
+  <div class="space-y-3">
+    {
+      faqs.map((f) => (
+        <details class="group glass rounded-2xl border border-white/10 px-6 py-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer items-center justify-between gap-4 min-h-[48px] font-medium text-white/90 list-none">
+            <span>{f.q}</span>
+            <span class="text-phx-cyan transition-transform group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
+          </summary>
+          <p class="pb-2 pt-1 text-sm leading-relaxed text-white/60">{f.a}</p>
+        </details>
+      ))
+    }
+  </div>
+  <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+    <a
+      href={ACQUISITION_MAILTO}
+      data-cta="buy-now-faq"
+      class="inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] rounded-2xl bg-white text-phx-bg font-semibold hover:bg-white/90 transition-colors"
+    >
+      Buy Now — {SITE.priceDisplay}
+    </a>
+    <a
+      href={MAKE_OFFER_MAILTO}
+      data-cta="make-offer-faq"
+      class="inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] rounded-2xl border border-white/20 hover:bg-white/5 transition-colors"
+    >
+      Make an Offer
+    </a>
+  </div>
+</section>
